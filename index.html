@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex | Creative Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080810;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+:root {
+    --accent: #00f5d4;
+    --secondary: #9b5cff;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8, 8, 16, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+    border-bottom: 1px solid #222230;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+nav ul {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.hero {
+    min-height: 100vh;
+    padding: 130px 8% 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 650px;
+    z-index: 2;
+    animation: slideUp 1s ease both;
+}
+
+.tag {
+    color: var(--accent);
+    letter-spacing: 3px;
+    margin-bottom: 22px;
+    font-size: 13px;
+}
+
+h1 {
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.gradient {
+    background: linear-gradient(
+        90deg, var(--accent), var(--secondary)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: #aaaabb;
+    line-height: 1.8;
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 24px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary {
+    background: var(--accent);
+    color: #080810;
+}
+
+.outline {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px #00f5d433;
+}
+
+.hero-art {
+    width: 320px;
+    height: 320px;
+    min-width: 250px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    background: radial-gradient(circle, #20203a, #10101c);
+    box-shadow: 0 0 60px #00f5d422;
+    animation: float 4s ease-in-out infinite;
+}
+
+section {
+    padding: 90px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.section-desc {
+    color: #aaaabb;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.about {
+    background: #10101a;
+}
+
+.about-text {
+    max-width: 750px;
+    margin: auto;
+    text-align: center;
+    color: #b8b8c8;
+    line-height: 1.9;
+}
+
+.skills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.skill {
+    border: 1px solid #303044;
+    background: #151522;
+    padding: 13px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.skill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.project-card {
+    background: #12121e;
+    border: 1px solid #29293b;
+    border-radius: 14px;
+    padding: 28px;
+    transition: 0.35s;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 35px #00f5d410;
+}
+
+.project-icon {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.project-card h3 {
+    margin-bottom: 12px;
+}
+
+.project-card p {
+    color: #aaaabb;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.project-card a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.contact {
+    background: #10101a;
+    text-align: center;
+}
+
+.contact p {
+    color: #aaaabb;
+    margin: 20px 0 30px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #888899;
+    border-top: 1px solid #222230;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 850px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero-art {
+        width: 230px;
+        height: 230px;
+        min-width: 230px;
+        font-size: 75px;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        padding: 18px 6%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: #10101a;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 70px 6%;
+    }
+
+    .hero {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+    <div class="logo">ALEX<span class="gradient">.</span></div>
+
+    <button class="menu-btn" id="menuBtn"
+        aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+    <ul id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<main>
+<section class="hero" id="home">
+
+    <div class="hero-content">
+        <div class="tag">WELCOME TO MY PORTFOLIO</div>
+
+        <h1>
+            Hi, I'm Alex<br>
+            <span class="gradient" id="typing"></span>
+        </h1>
+
+        <p>
+            I am a creative 2D Animator and Cybersecurity Student.
+            I love creating amazing animations, learning new
+            technologies, and building creative digital experiences.
+        </p>
+
+        <div class="buttons">
+            <a href="#projects" class="btn primary">View My Work ↗</a>
+            <a href="#contact" class="btn outline">Contact Me</a>
+        </div>
+    </div>
+
+    <div class="hero-art">🎨</div>
+
+</section>
+
+<section class="about reveal" id="about">
+    <h2 class="section-title">About <span class="gradient">Me</span></h2>
+
+    <p class="section-desc">A little introduction about myself</p>
+
+    <div class="about-text">
+        I am passionate about 2D animation, storytelling,
+        web development, and cybersecurity. My goal is to combine
+        creativity with technology and create impressive digital work.
+        I enjoy learning, experimenting, and improving my skills every day.
+    </div>
+</section>
+
+<section id="skills" class="reveal">
+    <h2 class="section-title">My <span class="gradient">Skills</span></h2>
+
+    <p class="section-desc">Technologies and creative tools I explore</p>
+
+    <div class="skills">
+        <div class="skill">🎬 2D Animation</div>
+        <div class="skill">🎨 Character Design</div>
+        <div class="skill">💻 HTML</div>
+        <div class="skill">🎨 CSS</div>
+        <div class="skill">⚡ JavaScript</div>
+        <div class="skill">🐍 Python</div>
+        <div class="skill">🔐 Cybersecurity</div>
+    </div>
+</section>
+
+<section class="about reveal" id="projects">
+    <h2 class="section-title">My <span class="gradient">Projects</span></h2>
+
+    <p class="section-desc">Some projects from my creative journey</p>
+
+    <div class="projects-grid">
+
+        <div class="project-card">
+            <div class="project-icon">🎬</div>
+            <h3>2D Animation</h3>
+            <p>
+                Creative 2D characters, animation scenes,
+                storytelling, and cartoon production.
+            </p>
+            <a href="#contact">Learn More ↗</a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon">🌐</div>
+            <h3>Portfolio Website</h3>
+            <p>
+                A modern static portfolio built using HTML,
+                CSS, and JavaScript animations.
+            </p>
+            <a href="#home">Explore Website ↗</a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon">🐍</div>
+            <h3>Python Game</h3>
+            <p>
+                A Rock Paper Scissors game featuring random
+                computer choices and a score system.
+            </p>
+            <a href="#contact">Learn More ↗</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="contact reveal" id="contact">
+    <h2 class="section-title">Let's <span class="gradient">Connect</span></h2>
+
+    <p>
+        Have a creative idea or project? Let's work together.
+    </p>
+
+    <!-- Replace this email with your own -->
+    <a class="btn primary"
+       href="mailto:your-email@example.com">Send Me an Email ✉</a>
+</section>
+</main>
+
+<footer>
+    <p>© <span id="year"></span> Alex. All rights reserved.</p>
+    <p style="margin-top: 8px;">Designed with ❤️ and creativity</p>
+</footer>
+
+<script>
+// Animated typing effect
+const typing = document.getElementById("typing");
+const words = ["2D Animator", "Creative Artist", "Web Developer"];
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typeEffect() {
+    const word = words[wordIndex];
+
+    typing.textContent = word.substring(0, charIndex);
+
+    if (!deleting) {
+        charIndex++;
+
+        if (charIndex > word.length) {
+            deleting = true;
+            setTimeout(typeEffect, 1200);
+            return;
+        }
+    } else {
+        charIndex--;
+
+        if (charIndex < 0) {
+            charIndex = 0;
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+        }
+    }
+
+    setTimeout(typeEffect, deleting ? 55 : 100);
+}
+
+typeEffect();
+
+// Mobile navigation
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("active");
+    menuBtn.setAttribute("aria-expanded", isOpen);
+    menuBtn.textContent = isOpen ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+    });
+});
+
+// Reveal sections when scrolling
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(section => {
+    observer.observe(section);
+});
+
+// Automatic copyright year
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+// Animated background particles
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resizeCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    particles = Array.from(
+        { length: Math.min(65, Math.floor(window.innerWidth / 18)) },
+        () => ({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            size: Math.random() * 2 + 1,
+            speed: Math.random() * 0.5 + 0.15
+        })
+    );
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 245, 212, 0.55)";
+        ctx.fill();
+
+        p.y -= p.speed;
+
+        if (p.y < 0) {
+            p.y = window.innerHeight;
+            p.x = Math.random() * window.innerWidth;
+        }
+    });
+
+    requestAnimationFrame(animateParticles);
+}
+
+resizeCanvas();
+animateParticles();
+
+window.addEventListener("resize", resizeCanvas);
+</script>
+
+</body>
+</html>
